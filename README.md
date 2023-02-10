@@ -64,6 +64,54 @@ After successfully completing the installation process, the services should now 
 ## Testing
 You can test the services by sending appropriate HTTP requests to the endpoints.
 
+### Endpoints
+```bash
+Register User
+POST : http://localhost:3000/api/auth/register
+Payload: {
+    "username": "vipul",
+    "password": "142345",
+    "email": "vipul@gmail.com"
+}
+Response: User created 
+```
+```bash 
+Login User
+POST: http://localhost:3000/api/auth/login
+Payload: {
+    "password": "142345",
+    "email": "vipul@gmail.com"
+}
+Response: return token, user-id 
+```
+```bash
+Validate token
+POST: http://localhost:3000/api/auth/validatetoken
+Payload: {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ2aXB1bEBnbWFpbC5jb20iLCJpYXQiOjE2NzU3OTA0NzgsImV4cCI6MTY3NTg3Njg3OH0.1NWucpqPBVYxTbsW9RRV94y-wY-Uhpr4CmGySC8DnMw"
+}
+Response: Sccess(200) or Fail(401)
+```
+```bash
+Post Photo
+POST : http://127.0.0.1:5000/photos
+Headers: token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ2aXB1bEBnbWFpbC5jb20iLCJpYXQiOjE2NzU3OTA0NzgsImV4cCI6MTY3NTg3Njg3OH0.1NWucpqPBVYxTbsW9RRV94y-wY-Uhpr4CmGySC8DnMw
+Payload: {
+    "album_name": "example",
+    "photo_url": "https://example.com/vipul-profile.png",
+    "user_id": 1
+}
+Response: Success/Fail/Not Authorised
+```
+```bash
+Fetch Photos
+GET: http://127.0.0.1:5000/photos/<user-id>/<album-name>
+Headers: Headers: token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ2aXB1bEBnbWFpbC5jb20iLCJpYXQiOjE2NzU3OTA0NzgsImV4cCI6MTY3NTg3Njg3OH0.1NWucpqPBVYxTbsW9RRV94y-wY-Uhpr4CmGySC8DnMw
+Response: {
+    "photos": ["https://example.com/vipul-profile.png"]
+ }
+ ```
+
 ## Stop Services
 To stop the services, simply press CTRL + C and then run:
 ```bash

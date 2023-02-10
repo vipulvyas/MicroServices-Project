@@ -1,0 +1,48 @@
+version: '3'
+services:
+  node-service:
+    depends_on:
+      - mysql-db
+    image: auth
+    ports:
+      - "3000:3000"
+    environment:
+      - JWT_SECRET=secret
+      - JWT_EXPIRES_IN=1d
+      - SQL_DB_HOST=mysql-db
+      - SQL_DB_USER=root
+      - SQL_DB_PASSWORD=12345
+      - SQL_DB_DATABASE=AuthDB
+    links:
+      - mysql-db
+ 
+  flask-service:
+    image: photo
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MONGO_URL=mongodb://mongo/photos_db
+      - AUTH_SERVICE_HOST=node-service
+      - AUTH_SERVICE_PORT=3000
+    links:
+      - redis
+      - mongo
+  redis:
+    image: redis
+  mongo:
+    image: mongo
+  mysql-db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345
+      - MYSQL_DATABASE=AuthDB
+      - MYSQL_USER=vipul
+      - MYSQL_PASSWORD=12345
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+volumes: 
+  db:

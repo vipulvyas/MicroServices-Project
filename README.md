@@ -1,11 +1,11 @@
 # MicroServices
 
 
-## Authentication micro service: 
+## Authentication microservice: 
 Node.js and TypeScript-based microservice responsible for managing user login and registration. User data is securely stored in a MySQL database table, ensuring the confidentiality and integrity of the information. The system has been developed with scalability and performance in mind, making it well-suited for handling high volumes of requests and user data. The use of TypeScript adds type safety to the codebase and enhances the overall maintainability of the system.
 
-## Photo micro service: 
-This is a highly performant and scalable micro service, built using Flask and MongoDB. It is responsible for managing and storing user photos in their respective albums. The system utilizes Redis for caching these photos, ensuring fast and efficient retrieval of data. The micro service also integrates with an Authentication service to ensure secure and authorized access to user data.
+## Photo microservice: 
+This is a highly performant and scalable microservice, built using Flask and MongoDB. It is responsible for managing and storing user photos in their respective albums. The system utilizes Redis for caching these photos, ensuring fast and efficient retrieval of data. The microservice also integrates with an Authentication service to ensure secure and authorized access to user data.
 
 All services are containerized using Docker, making the deployment process easier and more efficient.
 
@@ -58,8 +58,8 @@ It's done.
 ## Usage
 After successfully completing the installation process, the services should now be up and running.
 
-- The Authentication micro service should be accessible at http://localhost:3000
-- The Photo micro service should be accessible at http://localhost:5000
+- The Authentication microservice should be accessible at http://localhost:3000
+- The Photo microservice should be accessible at http://localhost:5000
 
 ## Testing
 You can test the services by sending appropriate HTTP requests to the endpoints.
